@@ -15,6 +15,9 @@
 - [x] 双关通信
 - [ ] 双关通信，包引入加密算法
 
+### go 版本
+
+[go github](https://github.com/Kyoloro/go-socks5)
 
 ### 配置
 
