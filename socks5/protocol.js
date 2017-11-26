@@ -132,6 +132,9 @@ module.exports = class ServerProtocol {
     remote.on('error', e => {
       console.log(e)
 
+      if (conn.destroyed) {
+        return
+      }
       conn.write(Buffer.from([Socks5Version, 0x04, 0x00, AddressTypeIpv4]), () => {
         remote.destroy()
         conn.destroy()
@@ -139,6 +142,9 @@ module.exports = class ServerProtocol {
     })
 
     remote.on('data', buf => {
+      if (conn.destroyed) {
+        return
+      }
       conn.write(buf)
     })
 
@@ -149,7 +155,7 @@ module.exports = class ServerProtocol {
   transport(buf) {
     console.log('transport 阶段')
 
-    if (this.remote) {
+    if (this.remote && !this.remote.destroyed) {
       this.remote.write(buf)
     }
   }
