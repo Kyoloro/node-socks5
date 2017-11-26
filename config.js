@@ -1,4 +1,3 @@
 module.exports = {
-  port: 1081,
-  // tcpBufferSize: 2048
+  port: 1080
 }
