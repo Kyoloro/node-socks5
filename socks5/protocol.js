@@ -145,6 +145,7 @@ module.exports = class ServerProtocol {
       if (conn.destroyed) {
         return
       }
+      console.log(`S -> C ${buf.length}byte`)
       conn.write(buf)
     })
 
@@ -156,6 +157,7 @@ module.exports = class ServerProtocol {
     console.log('transport 阶段')
 
     if (this.remote && !this.remote.destroyed) {
+      console.log(`C -> S ${buf.length}byte`)
       this.remote.write(buf)
     }
   }
