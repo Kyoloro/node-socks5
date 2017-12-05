@@ -141,13 +141,15 @@ module.exports = class ServerProtocol {
       })
     })
 
-    remote.on('data', buf => {
-      if (conn.destroyed) {
-        return
-      }
-      console.log(`S -> C ${buf.length}byte`)
-      conn.write(buf)
-    })
+    // remote.on('data', buf => {
+    //   if (conn.destroyed) {
+    //     return
+    //   }
+    //   console.log(`S -> C ${buf.length}byte`)
+    //   conn.write(buf)
+    // })
+
+    remote.pipe(conn)
 
     this.remote = remote
   }
